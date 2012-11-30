@@ -21,11 +21,11 @@ distclean:
 
 install:
 	@for i in $(SUBDIRS); do (cd $$i && $(MAKE) install) || exit; done
-	$(MKDIR) $(DESTDIR)$(INCLUDEDIR)
-	$(INSTALL) -m 0644 -- C99.h $(DESTDIR)$(INCLUDEDIR)/C99.h
+	$(MKDIR) $(DESTDIR)$(INCLUDEDIR)/Devel
+	$(INSTALL) -m 0644 -- C99.h $(DESTDIR)$(INCLUDEDIR)/Devel/C99.h
 
 uninstall:
 	@for i in $(SUBDIRS); do (cd $$i && $(MAKE) uninstall) || exit; done
-	$(RM) -- $(DESTDIR)$(INCLUDEDIR)/C99.h
+	$(RM) -- $(DESTDIR)$(INCLUDEDIR)/Devel/C99.h
 
 .PHONY: all subdirs clean distclean install uninstall
