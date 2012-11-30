@@ -2,6 +2,7 @@ TARGETS	= hello struct union
 PREFIX	= /usr/local
 DESTDIR	=
 BINDIR	= $(PREFIX)/bin
+SBINDIR	= $(PREFIX)/sbin
 CC	= ../src/c99
 CPPFLAGSF?=
 CPPFLAGS?=

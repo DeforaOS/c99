@@ -1,6 +1,6 @@
 PACKAGE	= C99
 VERSION	= 0.0.0
-SUBDIRS	= data doc include src
+SUBDIRS	= data doc include src tests
 RM	?= rm -f
 LN	?= ln -f
 TAR	?= tar -czvf
@@ -123,6 +123,11 @@ dist:
 		$(PACKAGE)-$(VERSION)/src/target/asm/i586.c \
 		$(PACKAGE)-$(VERSION)/src/target/asm/i686.c \
 		$(PACKAGE)-$(VERSION)/src/target/project.conf \
+		$(PACKAGE)-$(VERSION)/tests/hello.c \
+		$(PACKAGE)-$(VERSION)/tests/struct.c \
+		$(PACKAGE)-$(VERSION)/tests/union.c \
+		$(PACKAGE)-$(VERSION)/tests/Makefile \
+		$(PACKAGE)-$(VERSION)/tests/project.conf \
 		$(PACKAGE)-$(VERSION)/Makefile \
 		$(PACKAGE)-$(VERSION)/config.h \
 		$(PACKAGE)-$(VERSION)/config.sh \
