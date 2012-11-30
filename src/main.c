@@ -23,7 +23,9 @@
 #include <errno.h>
 #include <System.h>
 #include "../include/C99/c99.h"
-#include "../config.h"
+
+/* constants */
+#define PROGNAME	"c99"
 
 
 /* c99 */
@@ -38,7 +40,7 @@ static int _c99(C99Prefs * prefs, int filec, char * filev[])
 			&& filev[0][len - 2] == '.' && filev[0][len - 1] == 'c')
 	{
 		if((c99 = c99_new(prefs, filev[0])) == NULL)
-			return error_print("c99");
+			return error_print(PROGNAME);
 		ret = c99_parse(c99);
 		c99_delete(c99);
 		return ret;
@@ -55,9 +57,14 @@ static int _c99(C99Prefs * prefs, int filec, char * filev[])
 /* usage */
 static int _usage(void)
 {
-	fputs("Usage: c99 [-c][-D name[=value]]...[-E][-g][-I directory]"
-"[-L directory][-m name[=value]]...[-o outfile][-Ooptlevel][-s][-U name]..."
-" operand ...\n", stderr);
+	fputs("Usage: " PROGNAME " [-D name[=value]]... [-E][-g]"
+"[-I directory][-L directory]\n"
+"           [-m name[=value]]... [-o outfile][-Ooptlevel][-s][-U name]...\n"
+"           filename...\n"
+"       " PROGNAME " -c [-D name[=value]]... [-E][-g]"
+"[-I directory][-L directory]\n"
+"           [-m name[=value]]... [-o outfile][-Ooptlevel][-s][-U name]...\n"
+"           filename...\n", stderr);
 	return 1;
 }
 
@@ -157,7 +164,7 @@ static int _main_default_defines(C99Prefs * prefs)
 	static char machine[sizeof(uts.machine) + 7];
 
 	if(uname(&uts) != 0)
-		return error_set_print(PACKAGE, 1, "%s", strerror(errno));
+		return error_set_print(PROGNAME, 1, "%s", strerror(errno));
 	snprintf(sysname, sizeof(sysname), "__%s__=1", uts.sysname);
 	snprintf(machine, sizeof(machine), "__%s__=1", uts.machine);
 	if(_main_add_define(prefs, sysname) != 0
@@ -198,7 +205,7 @@ static int _main_add_define(C99Prefs * prefs, char * define)
 	value = strtok(define, "=");
 	if((p = realloc(prefs->defines, sizeof(*p) * (prefs->defines_cnt + 1)))
 			== NULL)
-		return error_set_print(PACKAGE, 1, "%s", strerror(errno));
+		return error_set_print(PROGNAME, 1, "%s", strerror(errno));
 	prefs->defines = p;
 	prefs->defines[prefs->defines_cnt++] = define;
 	return 0;
@@ -213,7 +220,7 @@ static int _main_add_path(C99Prefs * prefs, char const * path)
 #endif
 	if((p = realloc(prefs->paths, sizeof(*p) * (prefs->paths_cnt + 1)))
 			== NULL)
-		return error_set_print(PACKAGE, 1, "%s", strerror(errno));
+		return error_set_print(PROGNAME, 1, "%s", strerror(errno));
 	prefs->paths = p;
 	prefs->paths[prefs->paths_cnt++] = path;
 	return 0;
@@ -230,7 +237,7 @@ static int _main_add_undefine(C99Prefs * prefs, char const * undefine)
 		return 1;
 	if((p = realloc(prefs->undefines, sizeof(*p)
 					* (prefs->undefines_cnt + 1))) == NULL)
-		return error_set_print(PACKAGE, 1, "%s", strerror(errno));
+		return error_set_print(PROGNAME, 1, "%s", strerror(errno));
 	prefs->undefines = p;
 	prefs->undefines[prefs->undefines_cnt++] = undefine;
 	return 0;
@@ -248,7 +255,7 @@ static int _main_add_option(C99Prefs * prefs, char const * option)
 		return 1;
 	if((p = realloc(prefs->options, sizeof(*p)
 					* (prefs->options_cnt + 1))) == NULL)
-		return error_set_print(PACKAGE, 1, "%s", strerror(errno));
+		return error_set_print(PROGNAME, 1, "%s", strerror(errno));
 	prefs->options = p;
 	p = &prefs->options[prefs->options_cnt];
 	if((p->name = string_new(option)) == NULL)
