@@ -195,5 +195,5 @@ static int _asm_exit(void)
 /* asm_section */
 static int _asm_section(char const * name)
 {
-	return asm_set_section(_asm_as, name, -1, -1, 0);
+	return (asm_set_section(_asm_as, name, -1, -1, 0) != NULL) ? 0 : -1;
 }
