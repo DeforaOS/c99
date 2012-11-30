@@ -32,7 +32,7 @@
 
 #ifdef DEBUG
 # define DEBUG_GRAMMAR() fprintf(stderr, "DEBUG: %s(%p) \"%s\"\n", __func__, \
-		c99, _parse_get_string(c99))
+		(void *)c99, _parse_get_string(c99))
 #else
 # define DEBUG_GRAMMAR()
 #endif
