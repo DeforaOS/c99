@@ -38,7 +38,7 @@ static int _c99(C99Prefs * prefs, int filec, char * filev[])
 			&& filev[0][len - 2] == '.' && filev[0][len - 1] == 'c')
 	{
 		if((c99 = c99_new(prefs, filev[0])) == NULL)
-			return error_print(PACKAGE);
+			return error_print("c99");
 		ret = c99_parse(c99);
 		c99_delete(c99);
 		return ret;
