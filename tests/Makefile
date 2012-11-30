@@ -1,4 +1,4 @@
-TARGETS	= graph hello struct union
+TARGETS	= graph.o hello.o struct.o union.o
 PREFIX	= /usr/local
 DESTDIR	=
 BINDIR	= $(PREFIX)/bin
@@ -16,32 +16,32 @@ INSTALL	?= install
 
 all: $(TARGETS)
 
-graph_OBJS = graph
-graph_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS) -M graph
+graph.o_OBJS = graph.o
+graph.o_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS) -M graph
 
-hello_OBJS = hello
-hello_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
+hello.o_OBJS = hello.o
+hello.o_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
 
-struct_OBJS = struct
-struct_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
+struct.o_OBJS = struct.o
+struct.o_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
 
-union_OBJS = union
-union_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
+union.o_OBJS = union.o
+union.o_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
 
-graph: graph.c
-	$(CC) $(graph_CFLAGS) -c graph.c
+graph.o: graph.c
+	$(CC) $(graph.o_CFLAGS) -c graph.c
 
-hello: hello.c
-	$(CC) $(hello_CFLAGS) -c hello.c
+hello.o: hello.c
+	$(CC) $(hello.o_CFLAGS) -c hello.c
 
-struct: struct.c
-	$(CC) $(struct_CFLAGS) -c struct.c
+struct.o: struct.c
+	$(CC) $(struct.o_CFLAGS) -c struct.c
 
-union: union.c
-	$(CC) $(union_CFLAGS) -c union.c
+union.o: union.c
+	$(CC) $(union.o_CFLAGS) -c union.c
 
 clean:
-	$(RM) -- $(graph_OBJS) $(hello_OBJS) $(struct_OBJS) $(union_OBJS)
+	$(RM) -- $(graph.o_OBJS) $(hello.o_OBJS) $(struct.o_OBJS) $(union.o_OBJS)
 
 distclean: clean
 	$(RM) -- $(TARGETS)

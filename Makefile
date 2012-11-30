@@ -123,6 +123,7 @@ dist:
 		$(PACKAGE)-$(VERSION)/src/target/asm/i586.c \
 		$(PACKAGE)-$(VERSION)/src/target/asm/i686.c \
 		$(PACKAGE)-$(VERSION)/src/target/project.conf \
+		$(PACKAGE)-$(VERSION)/tests/graph.c \
 		$(PACKAGE)-$(VERSION)/tests/hello.c \
 		$(PACKAGE)-$(VERSION)/tests/struct.c \
 		$(PACKAGE)-$(VERSION)/tests/union.c \
