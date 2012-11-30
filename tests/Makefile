@@ -1,4 +1,4 @@
-TARGETS	= hello struct union
+TARGETS	= graph hello struct union
 PREFIX	= /usr/local
 DESTDIR	=
 BINDIR	= $(PREFIX)/bin
@@ -16,6 +16,9 @@ INSTALL	?= install
 
 all: $(TARGETS)
 
+graph_OBJS = graph
+graph_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS) -M graph
+
 hello_OBJS = hello
 hello_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
 
@@ -24,6 +27,9 @@ struct_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
 
 union_OBJS = union
 union_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
+
+graph: graph.c
+	$(CC) $(graph_CFLAGS) -c graph.c
 
 hello: hello.c
 	$(CC) $(hello_CFLAGS) -c hello.c
@@ -35,7 +41,7 @@ union: union.c
 	$(CC) $(union_CFLAGS) -c union.c
 
 clean:
-	$(RM) -- $(hello_OBJS) $(struct_OBJS) $(union_OBJS)
+	$(RM) -- $(graph_OBJS) $(hello_OBJS) $(struct_OBJS) $(union_OBJS)
 
 distclean: clean
 	$(RM) -- $(TARGETS)
