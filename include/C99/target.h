@@ -18,7 +18,7 @@
 #ifndef DEVEL_C99_TARGET_H
 # define DEVEL_C99_TARGET_H
 
-# include <cpp.h>
+# include <Devel/CPP.h>
 # include "c99.h"
 
 
