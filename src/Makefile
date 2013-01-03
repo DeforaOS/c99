@@ -33,7 +33,7 @@ c99.o: c99.c common.h code.h parser.h ../include/C99.h
 	$(CC) $(c99_CFLAGS) -c c99.c
 
 code.o: code.c ../include/C99/target.h code.h ../config.h
-	$(CC) $(c99_CFLAGS) -c code.c
+	$(CC) -D PREFIX=\"$(PREFIX)\" $(c99_CFLAGS) -c code.c
 
 main.o: main.c ../include/C99.h ../config.h
 	$(CC) $(c99_CFLAGS) -c main.c
