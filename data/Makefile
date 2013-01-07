@@ -14,6 +14,7 @@ C99.pc: C99.pc.in ../config.sh
 
 clean:
 	$(RM) -- $(C99.pc_OBJS)
+	./pkgconfig.sh -c -P "$(PREFIX)" -- "C99.pc"
 
 distclean: clean
 	$(RM) -- $(TARGETS)
