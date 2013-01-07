@@ -4,14 +4,14 @@ DESTDIR	=
 BINDIR	= $(PREFIX)/bin
 SBINDIR	= $(PREFIX)/sbin
 CC	= ../src/c99
-CPPFLAGSF?=
-CPPFLAGS?=
+CPPFLAGSF=
+CPPFLAGS=
 CFLAGSF	= -W
 CFLAGS	=
-RM	?= rm -f
-LN	?= ln -f
-MKDIR	?= mkdir -p
-INSTALL	?= install
+RM	= rm -f
+LN	= ln -f
+MKDIR	= mkdir -p
+INSTALL	= install
 
 
 all: $(TARGETS)

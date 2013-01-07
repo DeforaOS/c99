@@ -2,19 +2,19 @@ TARGETS	= asm.so graph.so indent.so
 PREFIX	= /usr/local
 DESTDIR	=
 LIBDIR	= $(PREFIX)/lib
-CC	?= cc
+CC	= cc
 CPPFLAGSF= -I ../../include
 CPPFLAGS=
 CFLAGSF	= -W `pkg-config --cflags cpp`
 CFLAGS	= -Wall -g -O2 -fPIC -pedantic
 LDFLAGSF= `pkg-config --libs cpp`
-AR	?= ar
-RANLIB	?= ranlib
-CCSHARED?= $(CC) -shared
-RM	?= rm -f
-LN	?= ln -f
-MKDIR	?= mkdir -p
-INSTALL	?= install
+AR	= ar
+RANLIB	= ranlib
+CCSHARED= $(CC) -shared
+RM	= rm -f
+LN	= ln -f
+MKDIR	= mkdir -p
+INSTALL	= install
 
 
 all: $(TARGETS)

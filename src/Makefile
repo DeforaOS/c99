@@ -4,17 +4,17 @@ PREFIX	= /usr/local
 DESTDIR	=
 BINDIR	= $(PREFIX)/bin
 SBINDIR	= $(PREFIX)/sbin
-CC	?= cc
-CPPFLAGSF?=
+CC	= cc
+CPPFLAGSF=
 CPPFLAGS=
 CFLAGSF	= -W `pkg-config --cflags cpp`
 CFLAGS	= -Wall -g -O2 -pedantic
 LDFLAGSF= `pkg-config --libs cpp`
 LDFLAGS	= -L$(PREFIX)/lib -Wl,-rpath,$(PREFIX)/lib
-RM	?= rm -f
-LN	?= ln -f
-MKDIR	?= mkdir -p
-INSTALL	?= install
+RM	= rm -f
+LN	= ln -f
+MKDIR	= mkdir -p
+INSTALL	= install
 
 
 all: subdirs $(TARGETS)

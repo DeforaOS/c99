@@ -1,9 +1,9 @@
 PACKAGE	= C99
 VERSION	= 0.0.0
 SUBDIRS	= data doc include src tests
-RM	?= rm -f
-LN	?= ln -f
-TAR	?= tar -czvf
+RM	= rm -f
+LN	= ln -f
+TAR	= tar -czvf
 
 
 all: subdirs
