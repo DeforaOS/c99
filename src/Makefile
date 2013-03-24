@@ -13,14 +13,14 @@ LDFLAGSF= `pkg-config --libs cpp`
 LDFLAGS	= -L$(PREFIX)/lib -Wl,-rpath,$(PREFIX)/lib
 RM	= rm -f
 LN	= ln -f
-MKDIR	= mkdir -p
+MKDIR	= mkdir -m 0755 -p
 INSTALL	= install
 
 
 all: subdirs $(TARGETS)
 
 subdirs:
-	@for i in $(SUBDIRS); do (cd $$i && $(MAKE)) || exit; done
+	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE)) || exit; done
 
 c99_OBJS = c99.o code.o main.o parser.o scanner.o tokenset.o
 c99_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
@@ -48,21 +48,21 @@ tokenset.o: tokenset.c common.h code.h tokenset.h
 	$(CC) $(c99_CFLAGS) -c tokenset.c
 
 clean:
-	@for i in $(SUBDIRS); do (cd $$i && $(MAKE) clean) || exit; done
+	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) clean) || exit; done
 	$(RM) -- $(c99_OBJS)
 
 distclean:
-	@for i in $(SUBDIRS); do (cd $$i && $(MAKE) distclean) || exit; done
+	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) distclean) || exit; done
 	$(RM) -- $(c99_OBJS)
 	$(RM) -- $(TARGETS)
 
 install: $(TARGETS)
-	@for i in $(SUBDIRS); do (cd $$i && $(MAKE) install) || exit; done
+	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) install) || exit; done
 	$(MKDIR) $(DESTDIR)$(BINDIR)
 	$(INSTALL) -m 0755 -- c99 $(DESTDIR)$(BINDIR)/c99
 
 uninstall:
-	@for i in $(SUBDIRS); do (cd $$i && $(MAKE) uninstall) || exit; done
+	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) uninstall) || exit; done
 	$(RM) -- $(DESTDIR)$(BINDIR)/c99
 
 .PHONY: all subdirs clean distclean install uninstall
