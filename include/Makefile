@@ -22,7 +22,7 @@ distclean:
 install:
 	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) install) || exit; done
 	$(MKDIR) $(DESTDIR)$(INCLUDEDIR)/Devel
-	$(INSTALL) -m 0644 -- C99.h $(DESTDIR)$(INCLUDEDIR)/Devel/C99.h
+	$(INSTALL) -m 0644 C99.h $(DESTDIR)$(INCLUDEDIR)/Devel/C99.h
 
 uninstall:
 	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) uninstall) || exit; done

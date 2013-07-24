@@ -57,11 +57,11 @@ distclean: clean
 
 install: $(TARGETS)
 	$(MKDIR) $(DESTDIR)$(LIBDIR)/C99/target
-	$(INSTALL) -m 0644 -- asm.so $(DESTDIR)$(LIBDIR)/C99/target/asm.so
+	$(INSTALL) -m 0644 asm.so $(DESTDIR)$(LIBDIR)/C99/target/asm.so
 	$(MKDIR) $(DESTDIR)$(LIBDIR)/C99/target
-	$(INSTALL) -m 0644 -- graph.so $(DESTDIR)$(LIBDIR)/C99/target/graph.so
+	$(INSTALL) -m 0644 graph.so $(DESTDIR)$(LIBDIR)/C99/target/graph.so
 	$(MKDIR) $(DESTDIR)$(LIBDIR)/C99/target
-	$(INSTALL) -m 0644 -- indent.so $(DESTDIR)$(LIBDIR)/C99/target/indent.so
+	$(INSTALL) -m 0644 indent.so $(DESTDIR)$(LIBDIR)/C99/target/indent.so
 
 uninstall:
 	$(RM) -- $(DESTDIR)$(LIBDIR)/C99/target/asm.so

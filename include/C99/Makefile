@@ -15,9 +15,9 @@ distclean: clean
 
 install:
 	$(MKDIR) $(DESTDIR)$(INCLUDEDIR)/Devel/C99
-	$(INSTALL) -m 0644 -- c99.h $(DESTDIR)$(INCLUDEDIR)/Devel/C99/c99.h
+	$(INSTALL) -m 0644 c99.h $(DESTDIR)$(INCLUDEDIR)/Devel/C99/c99.h
 	$(MKDIR) $(DESTDIR)$(INCLUDEDIR)/Devel/C99
-	$(INSTALL) -m 0644 -- target.h $(DESTDIR)$(INCLUDEDIR)/Devel/C99/target.h
+	$(INSTALL) -m 0644 target.h $(DESTDIR)$(INCLUDEDIR)/Devel/C99/target.h
 
 uninstall:
 	$(RM) -- $(DESTDIR)$(INCLUDEDIR)/Devel/C99/c99.h
