@@ -3,7 +3,7 @@ includedir=${prefix}/include
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 
-Name: C99
+Name: @PACKAGE@
 Description: DeforaOS C99 compiler
 Version: @VERSION@
 Requires: Asm
