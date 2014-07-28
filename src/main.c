@@ -25,7 +25,9 @@
 #include "../include/C99/c99.h"
 
 /* constants */
-#define PROGNAME	"c99"
+#ifndef PROGNAME
+# define PROGNAME	"c99"
+#endif
 
 
 /* c99 */
