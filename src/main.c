@@ -31,6 +31,15 @@
 
 
 /* c99 */
+/* private */
+/* prototypes */
+static int _c99(C99Prefs * prefs, int filec, char * filev[]);
+
+static int _usage(void);
+
+
+/* functions */
+/* c99 */
 static int _c99(C99Prefs * prefs, int filec, char * filev[])
 {
 	int ret = 0;
