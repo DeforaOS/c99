@@ -168,7 +168,7 @@ int main(int argc, char * argv[])
 }
 
 static int _main_default_defines(C99Prefs * prefs)
-	/* FIXME define these in the as plug-in instead */
+	/* FIXME define these in the "asm" plug-in instead */
 {
 	struct utsname uts;
 	static char sysname[sizeof(uts.sysname) + 7];
