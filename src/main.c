@@ -15,7 +15,6 @@
 
 
 
-#include <sys/utsname.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -82,7 +81,6 @@ static int _usage(void)
 
 /* public */
 /* main */
-static int _main_default_defines(C99Prefs * prefs);
 static int _main_default_paths(C99Prefs * prefs);
 static int _main_add_define(C99Prefs * prefs, char * define);
 static int _main_add_path(C99Prefs * prefs, char const * path);
@@ -96,8 +94,7 @@ int main(int argc, char * argv[])
 	int o;
 
 	memset(&prefs, 0, sizeof(prefs));
-	if(_main_default_defines(&prefs) != 0
-			|| _main_default_paths(&prefs) != 0)
+	if(_main_default_paths(&prefs) != 0)
 		return 2;
 	while((o = getopt(argc, argv, "cD:EgI:L:m:M:o:O123sU:W")) != -1)
 		switch(o)
@@ -165,23 +162,6 @@ int main(int argc, char * argv[])
 	free(prefs.defines);
 	free(prefs.undefines);
 	return ret;
-}
-
-static int _main_default_defines(C99Prefs * prefs)
-	/* FIXME define these in the "asm" plug-in instead */
-{
-	struct utsname uts;
-	static char sysname[sizeof(uts.sysname) + 7];
-	static char machine[sizeof(uts.machine) + 7];
-
-	if(uname(&uts) != 0)
-		return error_set_print(PROGNAME, 1, "%s", strerror(errno));
-	snprintf(sysname, sizeof(sysname), "__%s__=1", uts.sysname);
-	snprintf(machine, sizeof(machine), "__%s__=1", uts.machine);
-	if(_main_add_define(prefs, sysname) != 0
-			|| _main_add_define(prefs, machine) != 0)
-		return 1;
-	return 0;
 }
 
 static int _main_default_paths(C99Prefs * prefs)

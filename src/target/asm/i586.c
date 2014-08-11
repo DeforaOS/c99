@@ -20,6 +20,8 @@
 static AsmTargetArch _asm_arch_i586 =
 {
 	"i586",
+	_asm_arch_i386_init,
+	NULL,
 	_asm_arch_i386_function_begin,
 	_asm_arch_i386_function_call,
 	_asm_arch_i386_function_end

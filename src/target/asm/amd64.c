@@ -17,6 +17,7 @@
 
 /* amd64 */
 /* prototypes */
+static int _asm_arch_amd64_init(C99Helper * helper, char const * name);
 static int _asm_arch_amd64_function_begin(char const * name);
 static int _asm_arch_amd64_function_call(char const * name);
 static int _asm_arch_amd64_function_end(void);
@@ -26,6 +27,8 @@ static int _asm_arch_amd64_function_end(void);
 static AsmTargetArch _asm_arch_amd64 =
 {
 	"amd64",
+	_asm_arch_amd64_init,
+	NULL,
 	_asm_arch_amd64_function_begin,
 	_asm_arch_amd64_function_call,
 	_asm_arch_amd64_function_end
@@ -33,6 +36,13 @@ static AsmTargetArch _asm_arch_amd64 =
 
 
 /* functions */
+/* asm_arch_amd64_init */
+static int _asm_arch_amd64_init(C99Helper * helper, char const * name)
+{
+	return helper->define_add(helper->c99, "__amd64__", "1");
+}
+
+
 /* asm_arch_amd64_function_begin */
 static int _asm_arch_amd64_function_begin(char const * name)
 {
