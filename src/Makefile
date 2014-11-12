@@ -1,5 +1,6 @@
 SUBDIRS	= sets target
-TARGETS	= c99
+TARGETS	= $(OBJDIR)c99
+OBJDIR	=
 PREFIX	= /usr/local
 DESTDIR	=
 BINDIR	= $(PREFIX)/bin
@@ -22,30 +23,30 @@ all: subdirs $(TARGETS)
 subdirs:
 	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE)) || exit; done
 
-c99_OBJS = c99.o code.o main.o parser.o scanner.o tokenset.o
+c99_OBJS = $(OBJDIR)c99.o $(OBJDIR)code.o $(OBJDIR)main.o $(OBJDIR)parser.o $(OBJDIR)scanner.o $(OBJDIR)tokenset.o
 c99_CFLAGS = $(CPPFLAGSF) $(CPPFLAGS) $(CFLAGSF) $(CFLAGS)
 c99_LDFLAGS = $(LDFLAGSF) $(LDFLAGS)
 
-c99: $(c99_OBJS)
-	$(CC) -o c99 $(c99_OBJS) $(c99_LDFLAGS)
+$(OBJDIR)c99: $(c99_OBJS)
+	$(CC) -o $(OBJDIR)c99 $(c99_OBJS) $(c99_LDFLAGS)
 
-c99.o: c99.c common.h code.h parser.h ../include/C99.h
-	$(CC) $(c99_CFLAGS) -c c99.c
+$(OBJDIR)c99.o: c99.c common.h code.h parser.h ../include/C99.h
+	$(CC) $(c99_CFLAGS) -o $(OBJDIR)c99.o -c c99.c
 
-code.o: code.c ../include/C99/target.h code.h ../config.h
-	$(CC) -D PREFIX=\"$(PREFIX)\" $(c99_CFLAGS) -c code.c
+$(OBJDIR)code.o: code.c ../include/C99/target.h code.h ../config.h
+	$(CC) -D PREFIX=\"$(PREFIX)\" $(c99_CFLAGS) -o $(OBJDIR)code.o -c code.c
 
-main.o: main.c ../include/C99.h ../config.h
-	$(CC) $(c99_CFLAGS) -c main.c
+$(OBJDIR)main.o: main.c ../include/C99.h ../config.h
+	$(CC) $(c99_CFLAGS) -o $(OBJDIR)main.o -c main.c
 
-parser.o: parser.c common.h code.h tokenset.h scanner.h ../include/C99.h ../config.h
-	$(CC) $(c99_CFLAGS) -c parser.c
+$(OBJDIR)parser.o: parser.c common.h code.h tokenset.h scanner.h ../include/C99.h ../config.h
+	$(CC) $(c99_CFLAGS) -o $(OBJDIR)parser.o -c parser.c
 
-scanner.o: scanner.c ../include/C99.h ../config.h
-	$(CC) $(c99_CFLAGS) -c scanner.c
+$(OBJDIR)scanner.o: scanner.c ../include/C99.h ../config.h
+	$(CC) $(c99_CFLAGS) -o $(OBJDIR)scanner.o -c scanner.c
 
-tokenset.o: tokenset.c common.h code.h tokenset.h
-	$(CC) $(c99_CFLAGS) -c tokenset.c
+$(OBJDIR)tokenset.o: tokenset.c common.h code.h tokenset.h
+	$(CC) $(c99_CFLAGS) -o $(OBJDIR)tokenset.o -c tokenset.c
 
 clean:
 	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) clean) || exit; done
@@ -59,7 +60,7 @@ distclean:
 install: $(TARGETS)
 	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) install) || exit; done
 	$(MKDIR) $(DESTDIR)$(BINDIR)
-	$(INSTALL) -m 0755 c99 $(DESTDIR)$(BINDIR)/c99
+	$(INSTALL) -m 0755 $(OBJDIR)c99 $(DESTDIR)$(BINDIR)/c99
 
 uninstall:
 	@for i in $(SUBDIRS); do (cd "$$i" && $(MAKE) uninstall) || exit; done
