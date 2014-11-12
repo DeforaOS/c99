@@ -128,6 +128,7 @@ dist:
 		$(PACKAGE)-$(VERSION)/tests/struct.c \
 		$(PACKAGE)-$(VERSION)/tests/union.c \
 		$(PACKAGE)-$(VERSION)/tests/Makefile \
+		$(PACKAGE)-$(VERSION)/tests/c99.sh \
 		$(PACKAGE)-$(VERSION)/tests/project.conf \
 		$(PACKAGE)-$(VERSION)/Makefile \
 		$(PACKAGE)-$(VERSION)/config.h \
