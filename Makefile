@@ -33,8 +33,8 @@ dist:
 		$(PACKAGE)-$(VERSION)/doc/gtkdoc/C99-docs.xml \
 		$(PACKAGE)-$(VERSION)/doc/gtkdoc/project.conf \
 		$(PACKAGE)-$(VERSION)/doc/gtkdoc/tmpl/Makefile \
-		$(PACKAGE)-$(VERSION)/doc/gtkdoc/tmpl/c99-unused.sgml \
-		$(PACKAGE)-$(VERSION)/doc/gtkdoc/tmpl/c99.sgml \
+		$(PACKAGE)-$(VERSION)/doc/gtkdoc/tmpl/C99-unused.sgml \
+		$(PACKAGE)-$(VERSION)/doc/gtkdoc/tmpl/C99.sgml \
 		$(PACKAGE)-$(VERSION)/doc/gtkdoc/tmpl/target.sgml \
 		$(PACKAGE)-$(VERSION)/doc/gtkdoc/tmpl/project.conf \
 		$(PACKAGE)-$(VERSION)/include/C99.h \
