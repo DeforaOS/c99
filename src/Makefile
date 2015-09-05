@@ -8,10 +8,10 @@ SBINDIR	= $(PREFIX)/sbin
 CC	= cc
 CPPFLAGSF=
 CPPFLAGS=
-CFLAGSF	= -W `pkg-config --cflags cpp`
-CFLAGS	= -Wall -g -O2 -pedantic
+CFLAGSF	= `pkg-config --cflags cpp`
+CFLAGS	= -W -Wall -g -O2 -pedantic -fPIE -D_FORTIFY_SOURCE=2 -fstack-protector-all
 LDFLAGSF= `pkg-config --libs cpp`
-LDFLAGS	= -L$(PREFIX)/lib -Wl,-rpath,$(PREFIX)/lib
+LDFLAGS	= -L$(PREFIX)/lib -Wl,-rpath,$(PREFIX)/lib -Wl,-pie -Wl,-z,relro -Wl,-z,now
 RM	= rm -f
 LN	= ln -f
 MKDIR	= mkdir -m 0755 -p

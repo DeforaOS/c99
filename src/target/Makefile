@@ -6,9 +6,10 @@ LIBDIR	= $(PREFIX)/lib
 CC	= cc
 CPPFLAGSF= -I ../../include
 CPPFLAGS=
-CFLAGSF	= -W `pkg-config --cflags cpp`
-CFLAGS	= -Wall -g -O2 -fPIC -pedantic
+CFLAGSF	= `pkg-config --cflags cpp` -fPIC
+CFLAGS	= -W -Wall -g -O2 -pedantic -D_FORTIFY_SOURCE=2 -fstack-protector-all
 LDFLAGSF= `pkg-config --libs cpp`
+LDFLAGS	= -Wl,-z,relro -Wl,-z,now
 AR	= ar
 RANLIB	= ranlib
 CCSHARED= $(CC) -shared
