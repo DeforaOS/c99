@@ -416,7 +416,7 @@ static int _storage_class_specifier(C99 * c99)
 			break;
 	}
 	if((ret = code_context_set_storage(c99->code, storage)) != 0)
-		_parse_error(c99, error_get());
+		_parse_error(c99, error_get(NULL));
 	ret |= scan(c99);
 	return ret;
 }
@@ -482,7 +482,7 @@ static int _type_specifier(C99 * c99)
 			break;
 	}
 	if((ret = code_context_set_class(c99->code, cclass)) != 0)
-		_parse_error(c99, error_get());
+		_parse_error(c99, error_get(NULL));
 	ret |= scan(c99);
 	return ret;
 }
@@ -835,7 +835,7 @@ static int _identifier(C99 * c99)
 
 	DEBUG_GRAMMAR();
 	if(code_context_set_identifier(c99->code, _parse_get_string(c99)) != 0)
-		ret = _parse_error(c99, "%s", error_get());
+		ret = _parse_error(c99, "%s", error_get(NULL));
 	ret |= scan(c99);
 	return ret;
 }
@@ -1144,7 +1144,7 @@ static int _postfix_expr_do(C99 * c99)
 		{
 			if(code_context_set(c99->code,
 					CODE_CONTEXT_FUNCTION_PARAMETERS) != 0)
-				ret |= _parse_error(c99, error_get());
+				ret |= _parse_error(c99, error_get(NULL));
 			ret |= scan(c99);
 			if(!_parse_is_code(c99, C99_CODE_OPERATOR_RPAREN))
 				ret |= _parse_check_set(c99,
@@ -1206,7 +1206,7 @@ static int _primary_expr(C99 * c99)
 
 	DEBUG_GRAMMAR();
 	if(code_context_set(c99->code, CODE_CONTEXT_PRIMARY_EXPR) != 0)
-		ret |= _parse_error(c99, error_get());
+		ret |= _parse_error(c99, error_get(NULL));
 	if((code = token_get_code(c99->token)) == C99_CODE_IDENTIFIER)
 	{
 		ret |= _identifier(c99);
@@ -1535,12 +1535,12 @@ static int _compound_statement(C99 * c99)
 	DEBUG_GRAMMAR();
 	ret = scan(c99);
 	if(code_scope_push(c99->code) < 0)
-		ret |= _parse_error(c99, error_get());
+		ret |= _parse_error(c99, error_get(NULL));
 	if(_parse_in_set(c99, c99set_block_item_list))
 		ret |= _block_item_list(c99);
 	ret |= _parse_check(c99, C99_CODE_OPERATOR_RBRACE);
 	if(code_scope_pop(c99->code) < 0)
-		ret |= _parse_error(c99, error_get());
+		ret |= _parse_error(c99, error_get(NULL));
 	return ret;
 }
 
